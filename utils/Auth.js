@@ -106,12 +106,12 @@ const validateEmail = async (email) => {
   return user ? false : true;
 };
 const userLogin = async (userCreds, role, res) => {
-  let { email, password } = userCreds;
-  const user = await User.findOne({ email });
+  let { username, password } = userCreds;
+  const user = await User.findOne({ username });
   if (!user) {
     return res.status(404).json({
       messege: {
-        msg: "User not found",
+        msg: "admin error",
         success: false,
       },
     });

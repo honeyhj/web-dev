@@ -42,9 +42,9 @@ class Adminlogin extends Component {
         this.props.history.push("/admindashboard");
       })
       .catch((err) => {
-        console.log("ee", err.response);
-        this.setState({ mesg: err.response.data.messege.msg });
-        this.notify();
+        console.log(err);
+        // this.setState({ mesg: err.response.data.messege.msg });
+        // this.notify();
       });
   };
   render() {

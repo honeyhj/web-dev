@@ -9,7 +9,7 @@ const path = require("path");
 // mongoose.connect("mongodb://localhost:27017/trippledev", {
 //   useNewUrlParser: true,
 //   useUnifiedTopology: true,
-// });
+// })
 
 mongoose
   .connect('mongodb+srv://amrfirstlearning:977amrfirstlearning977.@cluster0.qulux.mongodb.ne' +
@@ -27,6 +27,9 @@ app.use(cor());
 app.use(require("./routes/users"));
 app.use(require("./routes/product"));
 app.use(require("./routes/menu"));
+app.use(require("./routes/cart"));
+// app.use(require("./routes/order"));
+// app.use(require("./routes/wishlist"));
 var db = mongoose.connection;
 db.on("error", console.error.bind(console, "connection error"));
 db.once("open", () => {

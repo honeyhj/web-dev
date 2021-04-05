@@ -133,7 +133,7 @@ router.post("/update-product/:id", async (req, res) => {
     })
   })
 })
-router.get("/delete-product/:id",userAuth,checkRole['admin'],async (req, res)=>{
+router.get("/delete-product/:id", userAuth,checkRole(['admin']),async (req,res)=>{
   await Product.deleteOne({_id:req.params.id})
   .then(product=>{
     res.status(200).json({
@@ -141,11 +141,12 @@ router.get("/delete-product/:id",userAuth,checkRole['admin'],async (req, res)=>{
     })
   })
   .catch(error=>{
-    res.status(500).json({
-      message:'server error'
-    })
+  res.status(500).json({
+    message:'server error'
   })
 })
+})
+
 module.exports = router;
 
 // const express = require('express');
