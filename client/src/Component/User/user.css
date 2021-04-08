@@ -35,6 +35,17 @@
     text-transform: capitalize;
     color:#CCCECF;
 }
+.header .header-item3{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.header .header-item3 .cart{
+    cursor: pointer;
+    font-size: 20px;
+    text-transform: capitalize;
+    color:#CCCECF;
+}
 .header  li{
     list-style:none;
     cursor: pointer;

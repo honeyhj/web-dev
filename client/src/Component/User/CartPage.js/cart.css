@@ -1,0 +1,55 @@
+#cart{
+  width: 980px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+  border: 1px solid red;
+}
+#cart .img{
+  width: 90%;
+  margin: auto;
+}
+#cart .img img{
+  width: 100%;
+}
+#cart .productName h2{
+  font-size: 30px;
+}
+#cart .productName p{
+  font-size: 15px;
+  font-family: serif;
+  text-transform: capitalize;
+}
+#cart .buttons-area{
+  display: grid;
+  grid-template-columns: repeat(3,1fr);
+}
+#cart .buttons-area .taka{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#cart .buttons-area .quantity{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+#cart .buttons-area .delete{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  outline: none;
+  border: none;
+}
+#cart .buttons-area .delete button{
+  outline: none;
+  border: none;
+  border-radius: 3px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  -o-border-radius: 3px;
+  background: #222;
+  color: #fff;
+  text-transform: capitalize;
+}
