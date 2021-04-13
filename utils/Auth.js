@@ -152,7 +152,7 @@ const userLogin = async (userCreds, role, res) => {
     },
     process.env.SECRET,
     {
-      expiresIn: 168,
+      expiresIn: "7d",
     }
   );
 
@@ -175,30 +175,35 @@ const checkRole = (roles) => (req, res, next) => {
     ? res.status(401).json("Unauthorized")
     : next();
 };
+
 const userAuth = (req, res, next) => {
+  // console.log(req.header);
+  console.log(req.header("auth"),'lkklklklklkl');
+  
   if (req.header("auth")) {
     const mytoken = req.header("auth").split(" ");
+    if (mytoken[1]) {
+      return jwt.verify(mytoken[1], process.env.SECRET, (err, decoded) => {
+        if (err) {
+          return res.status(404).json({
+            messege: {
+              err: err,
+              success: false,
+            },
+          });
+        }
+        req.user = decoded;
+        return next();
+      });
+    }
   } else {
+    console.log(req.header("auth"),'headerrrrr');
+    
     return res.status(404).json({
       messege: {
         msg: "you dont have any token",
         success: false,
       },
-    });
-  }
-  const mytoken = req.header("auth").split(" ");
-  if (mytoken[1]) {
-    return jwt.verify(mytoken[1], process.env.SECRET, (err, decoded) => {
-      if (err) {
-        return res.status(404).json({
-          messege: {
-            msg: "Failed to authenticate",
-            success: false,
-          },
-        });
-      }
-      req.user = decoded;
-      return next();
     });
   }
 };

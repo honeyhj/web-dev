@@ -7,14 +7,144 @@ import URL from './Url';
 import './user.css';
 import Userlogin from "./Userlogin";
 import Userregister from "./Userregister";
+import CartPage from "./CartPage.js/CartPage";
+import Header from '../User/Header';
+import CheckoutPage from './Pages/CheckoutPage';
+import WishlistPage from './WishlistPage/WishlistPage';
 const User = () => {
+  const [cart,setCart] = useState([])
+  const [cartLength,setCartLength] = useState([])
+  const [wishlist , setWishlist]=useState([]);
+  const [wishlistLength , setWishlistLength]=useState([]);
+  const [products, setProducts] = useState([]);
+  const saveToCart = async (item,type) => {
+    console.log(item,'send id');
+    await axios.post(`http://localhost:7000/addToCart`,
+    {
+        type:type,
+        product:item
+        
+    },
+        {
+            headers: {
+                Accept: "application/json",
+                "Cotent-Type": "application/json",
+                "auth": localStorage.getItem('auth')
+            },
+        }
+    )
+        .then(res => {
+            console.log(res)
+        })
+        .catch(err => {
+            console.log(err)
+        })
+}
+const removeCart = async(id)=>{
+  await axios.delete(`http://localhost:7000/deleteCart/${id}`,
+        {
+            headers: {
+                Accept: "application/json",
+                "Cotent-Type": "application/json",
+                "auth": localStorage.getItem('auth')
+            },
+        }
+    )
+        .then(res => {
+            console.log(res)
+        })
+        .catch(err => {
+            console.log(err)
+        })
+}
+const addToWishlist =async(id)=>{
+  await axios.post(`http://localhost:7000/addToWishlist/${id}`,
+  {name:2},
+  {
+    headers: {
+        Accept: "application/json",
+        "Cotent-Type": "application/json",
+        "auth": localStorage.getItem('auth')
+    },
+}
+  )
+  .then(data=>{
+    console.log(data);
+  })
+  .catch(error=>{
+    console.log(error);
+  })
+}
+  
+  const getAllProduct = async () => {
+    await axios.get(`${URL}/get-allproducts`, {
+        headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+        }
+    })
+        .then(data => {
+          setProducts(data.data.product)
+            }
+        )
+        .catch(error=>{
+          console.log(error);
+          
+        })
+}
+const getCart =()=>{
+  axios.get("http://localhost:7000/getCart",
+  {
+    headers: {
+        Accept: "application/json",
+        "Cotent-Type": "application/json",
+        "auth": localStorage.getItem('auth')
+    },
+}
+  )
+  .then(data=>{
+    setCart(data.data[0].cart)
+    setCartLength(data.data[0].cart.length)
+  })
+  .catch(error=>{
+    console.log(error);
+  })
+}
+const getWishlist =()=>{
+  axios.get("http://localhost:7000/getWishlist",
+  {
+    headers: {
+        Accept: "application/json",
+        "Cotent-Type": "application/json",
+        "auth": localStorage.getItem('auth')
+    },
+}
+  )
+  .then(data=>{
+    setWishlist(data.data[0].wishlist)
+    setWishlistLength(data.data[0].wishlist.length)
+  })
+  .catch(error=>{
+    console.log(error);
+  })
+}
+useEffect(()=>{
+  getAllProduct()
+  getCart()
+  getWishlist()
+},[])
+console.log(products);
+
   return (
     <BrowserRouter>
         <Switch>
-          <Route exact path="/" component={Home} />
+          <Route exact path="/" render={props=> <Home {...props} cartLength={cartLength} addToCart={saveToCart} wishlistLength={wishlistLength} addToWishlist={addToWishlist}/>}/>
           <Route exact path="/userregister" component={Userregister} />
           <Route exact path="/userlogin" component={Userlogin} />
           <Route exact path="/productDetails-Page" component={ProductDetailsPage} />
+          <Route exact path="/cartPage" render={props=> <CartPage {...props} addToCart={saveToCart} cart={cart} deleteCart={removeCart} products={products}/>} />
+          <Route exact path="/checkoutPage" render={props=> <CheckoutPage {...props} cart={cart}/>}/>
+          <Route exact path="/wishlistPage" render={ props => <WishlistPage {...props} products={products} wishlist={wishlist} addToCart={saveToCart}/>} />
         </Switch>
       </BrowserRouter>
   );

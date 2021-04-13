@@ -3,36 +3,35 @@ const Orders = require ("../model/Order")
 const { userAuth, checkRole } = require("../utils/Auth");
 
 
-router.post("/createOrder/:id",userAuth ,checkRole['admin'],async  (req,res)=>{
+router.post("/createOrder",userAuth ,checkRole(['user']),async (req,res)=>{
+  console.log(req.body,'fjkdsf iyfsjd');
+  
   const {
   orderid,
   paymentid,
   products,
-  address,
   total,
   dateofpurcashe,
   orderstatus,
   paymentmethod} =req.body;
-  const order = new Orders({
+  const orderrr =new Orders({
     userid:req.user.user_id,
     orderid,
   paymentid,
   products,
-  address,
   total,
-  dateofpurcashe,
-  orderstatus,
   paymentmethod
   })
-  order.save()
-  .then(order =>{
+  orderrr.save()
+  .then(myOrder =>{
+
     res.status(201).json({message:'order saved'})
   })
   .catch(error=>{
     res.status(400).json({error:error})
   })
 })
-router.post("/updateOrder",userAuth ,checkRole['admin'],async  (req,res)=>{
+router.post("/updateOrder",userAuth ,checkRole(['user']),async  (req,res)=>{
   Orders.UpdateOne({_id:req.user.user_id},{
         $set:{orderstatus:req.body.orderstatus}
     })
@@ -43,7 +42,7 @@ router.post("/updateOrder",userAuth ,checkRole['admin'],async  (req,res)=>{
         res.status(500).json({message:"failed to update order"})
     })
 })
-router.post("/deleteOrder/:id",userAuth ,checkRole['admin'],async  (req,res)=>{
+router.post("/deleteOrder/:id",userAuth ,checkRole(['user']),async  (req,res)=>{
   Orders.UpdateOne({id:req.user.user_id},{
         $pull:{orderid:{id:req.params.id}}
     })

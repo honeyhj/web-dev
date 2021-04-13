@@ -28,13 +28,14 @@ app.use(require("./routes/users"));
 app.use(require("./routes/product"));
 app.use(require("./routes/menu"));
 app.use(require("./routes/cart"));
-// app.use(require("./routes/order"));
-// app.use(require("./routes/wishlist"));
-var db = mongoose.connection;
-db.on("error", console.error.bind(console, "connection error"));
-db.once("open", () => {
-  console.log("database connected");
-});
+app.use(require("./routes/order"));
+app.use(require("./routes/wishlist"));
+
+// var db = mongoose.connection;
+// db.on("error", console.error.bind(console, "connection error"));
+// db.once("open", () => {
+//   console.log("database connected");
+// });
 app.use("/uploads", express.static("uploads"));
 
 app.listen(7000, () => {
