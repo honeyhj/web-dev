@@ -3,7 +3,7 @@ const Users = require("../model/Users");
 const { userAuth, checkRole } = require("../utils/Auth");
 
 
-router.post("/addToCart/:id",userAuth ,checkRole["admin"] ,async(req,res)=>{
+router.post("/addToCart/:id",userAuth ,checkRole(["admin"]) ,async(req,res)=>{
     if(req.query.type === "add"){
         Users.findOne({_id:req.user.user_id})
     .then(user=>{
@@ -30,7 +30,7 @@ router.post("/addToCart/:id",userAuth ,checkRole["admin"] ,async(req,res)=>{
     }
 })
 
-router.post("/deleteCart/:id",userAuth ,checkRole["admin"],async(req,res)=>{
+router.post("/deleteCart/:id",userAuth ,checkRole(["admin"]),async(req,res)=>{
     User.UpdateOne({id:req.user.user_id},{
         $pull:{cart:{id:req.params.id}}
     })
@@ -42,7 +42,7 @@ router.post("/deleteCart/:id",userAuth ,checkRole["admin"],async(req,res)=>{
     })
 })
 
-router.post("/clearCart",userAuth ,checkRole["admin"],async(req,res)=>{
+router.post("/clearCart",userAuth ,checkRole(["admin"]),async(req,res)=>{
     User.UpdateOne({id:req.user.user_id},{
         $set:{"cart":[]}
     })
