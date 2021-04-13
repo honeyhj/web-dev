@@ -1,6 +1,6 @@
 import axios from 'axios';
 import React, { useState } from 'react';
-import PaypalExpressBtn from 'react-paypal-express-checkout';
+// import PaypalExpressBtn from 'react-paypal-express-checkout';
 const CheckoutPage = ({cart}) => {
   const [name, setName] = useState('');
   const [mobile, setMobile] = useState('');

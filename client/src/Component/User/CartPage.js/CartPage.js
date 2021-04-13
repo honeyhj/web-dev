@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import './cart.css'
 const CartPage = ({cart,addToCart,deleteCart,products}) => {
   const [product , setProduct]=useState([]);
+
   const clearCart =()=>{
     axios.get(`http://localhost:7000/clearCart`,
     {
@@ -17,31 +18,28 @@ const CartPage = ({cart,addToCart,deleteCart,products}) => {
   }
   const makePd =()=>{
     const items = [];
-    for(let pd of cart){
-      console.log(pd,'hhhhh')
-    }
-  // cart.map(item=> {
-    // console.log(item,'hhhhh')
-    
-    // products.map(pd=>{
-    //   // if(pd._id === item.productId){
-    //   //   console.log(item.productId,'oppopopoo');
-        
-    //   //   items.push(pd)
-    //   // }
-    //   // else{
-    //   //   console.log(pd._id,item.productId,'oppopopoo');
-    //   // }
+    // for(let pd of cart){
+    //   console.log(pd,'hhhhh')
     // }
-    // )
-  // }
-  // )
+  cart.map(item=> {
+    console.log(item,'hhhhh')
+    
+    products.map(pd=>{
+      if(pd._id === item.productId){
+        // console.log(item.productId,'oppopopoo');
+        
+        items.push(pd)
+      }
+    }
+    )
+  }
+  )
   
   setProduct(items)
   }
   useEffect(()=>{
     makePd()
-  },[])
+  },[cart])
   return (
     <>
       {
@@ -66,6 +64,7 @@ const CartPage = ({cart,addToCart,deleteCart,products}) => {
           </div>
           <div className="delete">
             <button onClick={()=>deleteCart(item.productId)}>delete</button>
+            <span>kk</span>
           </div>
         </div>
       </div>
