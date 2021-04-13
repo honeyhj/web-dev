@@ -66,6 +66,7 @@ const CartPage = ({cart,addToCart,deleteCart,products}) => {
           </div>
           <div className="delete">
             <button onClick={()=>deleteCart(item.productId)}>delete</button>
+            <span>kk</span>
           </div>
         </div>
       </div>
