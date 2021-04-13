@@ -5,13 +5,13 @@ import ProductShow from './ProductShow';
 import ShowCase from './ShowCase';
 import TopHeading from './TopHeading';
 
-const Home = ({cartLength,addToCart}) => {
+const Home = ({cartLength,addToCart,addToWishlist}) => {
     return (
         <>
             <Header cartLength={cartLength}></Header>
             <TopHeading></TopHeading>
             <ShowCase></ShowCase>
-            <ProductShow addToCart={addToCart}></ProductShow>
+            <ProductShow addToCart={addToCart} addToWishlist={addToWishlist}></ProductShow>
         </>
     );
 };

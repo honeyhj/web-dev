@@ -79,6 +79,18 @@ router.post("/get-products", async (req, res) => {
     })
   })
 })
+router.get("/get-allproducts", async (req, res) => {
+  await Product.find()
+  .then(product => {
+    res.status(200).json({
+      success: true,
+      product,
+    })
+  })
+  .catch(error=>{
+    res.status(400).json({error})
+  })
+})
 router.post("/update-product/:id", async (req, res) => {
   const {
     Images,

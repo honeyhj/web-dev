@@ -6,7 +6,7 @@ import man1 from './img/man1.jpg';
 import axios from 'axios';
 import URL from './Url';
 import { set } from 'mongoose';
-const ProductShow = ({addToCart}) => {
+const ProductShow = ({addToCart,addToWishlist}) => {
     const [products, setProducts] = useState([]);
     const [psize, setpSize] = useState();
     const [skip, setSkip] = useState(0);
@@ -68,7 +68,8 @@ const ProductShow = ({addToCart}) => {
                             <h3>{item.title}</h3>
                             <p>gfdgdf</p>
                             <div className="show-addCart">
-                                <button type="button" className="btn" onClick={() => addToCart(item,"add")}>Add to cart</button>
+                                <button type="button" className="btn" onClick={() => addToCart(item._id,"add")}>Add to cart</button>
+                                <button type="button" onClick={()=>addToWishlist(item._id)}>add to favourite</button>
                             </div>
                         </div>
                     )

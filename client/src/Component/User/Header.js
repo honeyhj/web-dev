@@ -66,7 +66,8 @@ const Header = (props) => {
             }
           </div>
           <div className="header-item3">
-            <Link to="/cartPage"><span className="cart"><sup>{props.cartLength}</sup>cart</span></Link>
+            <Link to="/cartPage"><span className="cart"><sup>{props.cartLength}</sup>cart</span></Link><br />
+            <Link to="/wishlistPage"><span className="cart"><sup>{props.wishlistLength}</sup>wish</span></Link>
           </div>
         </div>
         {
