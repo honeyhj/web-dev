@@ -88,5 +88,13 @@ router.get(
 router.post("/login-admin", async (req, res) => {
   await userLogin(req.body, "admin", res);
 });
-
+router.get("/getAllUser",async (req, res)=>{
+  await User.find({})
+  .then(result=>{
+    res.status(200).json(result)
+  })
+  .catch(error=>{
+    res.status(500).json(error)
+  })
+})
 module.exports = router;

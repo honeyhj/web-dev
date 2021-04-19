@@ -19,6 +19,8 @@ route.post("/addToCart", userAuth, checkRole(["user"]), (req, res) => {
                     })
                 }
                 if (!duplicate) {
+                    console.log(req,'opopoppopoo');
+                    
                     Users.updateOne({ _id: req.user.user_id }, {
                         $push: { cart: {productId:req.body.product,quantity:1} }
                     })

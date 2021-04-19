@@ -65,9 +65,10 @@ const Header = (props) => {
               })
             }
           </div>
-          <div className="header-item3">
+          <div className="header-item3" style={{'display':'flex','justifyContent':'space-around'}}>
             <Link to="/cartPage"><span className="cart"><sup>{props.cartLength}</sup>cart</span></Link><br />
             <Link to="/wishlistPage"><span className="cart"><sup>{props.wishlistLength}</sup>wish</span></Link>
+            
           </div>
         </div>
         {

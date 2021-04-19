@@ -80,7 +80,7 @@ router.post("/get-products", async (req, res) => {
   })
 })
 router.get("/get-allproducts", async (req, res) => {
-  await Product.find()
+  await Product.find({})
   .then(product => {
     res.status(200).json({
       success: true,
@@ -89,6 +89,8 @@ router.get("/get-allproducts", async (req, res) => {
   })
   .catch(error=>{
     res.status(400).json({error})
+    console.log(error);
+    
   })
 })
 router.post("/update-product/:id", async (req, res) => {
@@ -145,7 +147,7 @@ router.post("/update-product/:id", async (req, res) => {
     })
   })
 })
-router.get("/delete-product/:id", userAuth,checkRole(['admin']),async (req,res)=>{
+router.get("/delete-product/:id",async (req,res)=>{
   await Product.deleteOne({_id:req.params.id})
   .then(product=>{
     res.status(200).json({

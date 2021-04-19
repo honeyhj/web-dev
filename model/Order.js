@@ -22,7 +22,14 @@ const OrderSchema = mongoose.Schema({
     dateofpurcashe:{
         type: Date
     },
-    orderstatus:String,
+    orderstatus:{
+        type:String,
+        default:'pending',
+        enum:['pending','accepted','processing','on the way','received','cancel']
+    },
+    deliveryTime:{
+        type: Date
+    },
     paymentmethod:String,
 }, { timestamps: true })
 

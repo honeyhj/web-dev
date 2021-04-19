@@ -6,6 +6,7 @@ import FlatList from "flatlist-react";
 import { confirmAlert } from "react-confirm-alert"; // Import
 import "react-confirm-alert/src/react-confirm-alert.css"; // Import css
 import Modal from "react-modal";
+import Layout from "./Layout";
 
 export default class Menumanage extends Component {
   constructor() {
@@ -294,6 +295,7 @@ export default class Menumanage extends Component {
   }
   render() {
     return (
+      <Layout>
       <div className="container-fluid">
         <Modal
           isOpen={this.state.modalIsOpen}
@@ -526,18 +528,18 @@ export default class Menumanage extends Component {
                 {
                   this.state.menus.map((item, index)=>{
                       return(
-                        <>
+                        <div key={index}>
                           {item.SubCategory.map((sub,index)=>{
                             if(sub.topCategory){
                               return(<h3 key={index}>{sub.Name}</h3>)
                             }
                           })}
-                        </>
+                        </div>
                         )
                   })
                 }
       </div>
-      
+      </Layout>
     );
   }
 }

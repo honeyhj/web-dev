@@ -30,7 +30,7 @@ router.post("/addsubdrop", async (req, res) => {
     {
       $push: {
         SubCategory: {
-          _id: new mongoose.Types.ObjectId().toHexString(),
+          // id: new mongoose.Types.ObjectId().toHexString(),
           Name: subdropdownmenu,
           topCategory:topCategory,
         },
@@ -48,7 +48,7 @@ router.post("/addsubMega", async (req, res) => {
   const data = await Menus.updateOne(
     { CategoryName: selectedmegadwnholder },
     {
-      $push: {
+      $addToSet: {
         SubCategory: {
           _id: new mongoose.Types.ObjectId().toHexString(),
           Name: submegamenu,

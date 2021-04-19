@@ -4,6 +4,7 @@ import { Multiselect } from "multiselect-react-dropdown";
 import Dropzone from "react-dropzone";
 import axios from "axios";
 import URL, { sub } from "../User/Url";
+import Layout from "./Layout";
 export default class Uploadproduct extends Component {
   constructor(props) {
     super(props);
@@ -59,22 +60,22 @@ export default class Uploadproduct extends Component {
   //       console.log(err);
   //     });
   // };
-  category = (e,t) =>{
+  category = (e, t) => {
     console.log(t);
     this.state.data.map(item => {
-      if(item.CategoryName === t.name && item.SubCategory.length > 0){
-        const get = item.SubCategory.map(subCat =>{
-          return(
-            {name:subCat.Name}
+      if (item.CategoryName === t.name && item.SubCategory.length > 0) {
+        const get = item.SubCategory.map(subCat => {
+          return (
+            { name: subCat.Name }
           )
         })
-        this.setState({sub:get,category:t.name})
+        this.setState({ sub: get, category: t.name })
       }
     })
-    
+
   }
-  subcategory = (e,t) =>{
-        this.setState({subcategory:t.name})
+  subcategory = (e, t) => {
+    this.setState({ subcategory: t.name })
   }
 
 
@@ -92,21 +93,6 @@ export default class Uploadproduct extends Component {
   //     })
   //   }
   // }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
   updateContent(newContent) {
     this.setState({
@@ -270,6 +256,7 @@ export default class Uploadproduct extends Component {
   };
   render() {
     return (
+      <Layout>
       <div className="container">
         <div style={{ display: "flex", justifyContent: "center" }}>
           {/* <Dropzone onDrop={this.onDrop} multiple={false} maxSize={800000000}>
@@ -306,7 +293,7 @@ export default class Uploadproduct extends Component {
               <div onClick={() => this.onDelete(image)}>
                 <img
                   style={{ minWidth: "300px", width: "300px", height: "240px" }}
-                  src={`http://localhost:5000/${image}`}
+                  src={`http://localhost:7000/${image}`}
                   alt={`productImg-${index}`}
                 />
               </div>
@@ -357,7 +344,6 @@ export default class Uploadproduct extends Component {
           </div>
           <div className="form-group">
             <label htmlFor="exampleInputEmail1">Discription</label>
-
             <CKEditor
               activeClass="p10"
               content={this.state.description}
@@ -539,6 +525,7 @@ export default class Uploadproduct extends Component {
           </button>
         </form>
       </div>
+      </Layout>
     );
   }
 }
