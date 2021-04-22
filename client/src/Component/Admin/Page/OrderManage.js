@@ -28,7 +28,7 @@ const OrderManage = () => {
     )
       .then(result => {
         console.log(result, 'iryweiruyewiury');
-        setOrders(result.data.myOrder)
+        setOrders(result.data)
       })
       .catch(error => {
         console.log(error, 'hghg');

@@ -7,8 +7,10 @@ import axios from 'axios';
 import URL from './Url';
 const ProductDetailsPage = () => {
     const { id } = useParams()
-    const [detailsProduct, setDetailsProduct] = useState({});
+    const [detailsProduct, setDetailsProduct] = useState([]);
+    const [loading,setLoading] = useState(false)
     const getDetails = async () => {
+        setLoading(true)
         
         await axios.get(`${URL}/getDetailsProduct/${id}`, {
             headers: {
@@ -18,6 +20,7 @@ const ProductDetailsPage = () => {
         })
             .then(data => {
                 setDetailsProduct(data.data)
+                setLoading(false)
             })
             .catch(error => {
                 console.log(error,'jkfdskjfdsjkfdskjfsdkjfdskjhfdsjfdkjf');
@@ -30,11 +33,12 @@ const ProductDetailsPage = () => {
     return (
         <>
             <Header></Header>
-            {!detailsProduct ? <p>loading........</p> :
+        
+            {detailsProduct.length==0? <p>loading........</p> :
                         <div id="productDetails">
                         <div className="productDetails-wrapper">
                             <div className="productDetails-item1">
-                                <img src={`${URL}/uploads/${detailsProduct.Images[0]}}`} />
+                                <img src={`${URL}/uploads/${detailsProduct.Images[0]}`} />
                             </div>
                             <div className="productDetails-item2">
                                 <div className="content">
