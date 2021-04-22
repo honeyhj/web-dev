@@ -171,7 +171,7 @@ const User = () => {
         <Route exact path="/" render={props => <Home {...props} cartLength={cartLength} addToCart={saveToCart} wishlistLength={wishlistLength} addToWishlist={addToWishlist} />} />
         <Route exact path="/userregister" component={Userregister} />
         <Route exact path="/userlogin" component={Userlogin} />
-        <Route exact path="/productDetails-Page" component={ProductDetailsPage} />
+        <Route exact path="/productDetails-Page/:id" component={ProductDetailsPage} />
         <Route exact path="/cartPage" render={props => <CartPage {...props} addToCart={saveToCart} cart={cart} deleteCart={removeCart} clearCart={clearCart} products={products} />} />
         <Route exact path="/checkoutPage" render={props => <CheckoutPage {...props} cart={cart} />} />
         <Route exact path="/wishlistPage" render={props => <WishlistPage {...props} products={products} wishlist={wishlist} addToCart={saveToCart} />} />

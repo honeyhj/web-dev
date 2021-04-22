@@ -9,21 +9,6 @@ const ProductManage = () => {
   const [open , setOpen]=useState(false);
   const [editabale , setEditabale]=useState({});
 
-  const [Images , setImages]=useState([]);
-  const [title , setTitle]=useState('');
-  const [skunumber , setSkunumber]=useState('');
-const [description , setDescription]=useState('');
-const [price , setPrice]=useState('');
-const [quantity , setQuantity]=useState('');
-const [weaight , setWeaight]=useState('');
-const [category , setCategory]=useState('');
-const [subcategory , setSubcategory]=useState('');
-const [brand , setBrand]=useState('');
-const [discount , setDiscount]=useState('');
-const [stock , setStock]=useState('');
-const [shippingdetails , setShippingdetails]=useState('');
-const [manufacturesdetails , setManufacturesdetails]=useState('');
-const [selectedsize , setSelectedsize]=useState([]);
 
 
 
@@ -61,21 +46,7 @@ const [selectedsize , setSelectedsize]=useState([]);
 }
 const updateProduct = async(id) =>{
   await axios.post(`${URL}/update-product/${id}`,
-  {Images,
-    title,
-    skunumber,
-    description,
-    price,
-    quantity,
-    weaight,
-    category,
-    subcategory,
-    brand,
-    discount,
-    stock,
-    shippingdetails,
-    manufacturesdetails,
-    selectedsize},
+  editabale,
   {
     headers: {
         "Content-Type": "application/json",
@@ -102,11 +73,8 @@ const editabaleData = (e) =>{
   newEditiable[e.target.name]=e.target.value;
   setEditabale(newEditiable)
 }
-const updateProductData =()=>{
-  console.log(editabale);
-  
-}
-console.log(title);
+
+console.log(product);
   return (
     <Layout>
       
@@ -119,7 +87,12 @@ console.log(title);
             <input type="text" placeholder='title' name='title' value={editabale.title} onChange={editabaleData}/><br /><br />
             <input type="text" placeholder='skunumber' name='skunumber' value={editabale.skunumber} onChange={editabaleData}/><br /><br />
             <input type="text" placeholder='description' name='description' value={editabale.description} onChange={editabaleData}/><br /><br />
-            <button onClick={updateProductData}>update</button><br /><br />
+            <input type="text" placeholder='quantity' name='quantity' value={editabale.quantity} onChange={editabaleData}/><br /><br />
+            <input type="text" placeholder='weaight' name='weaight' value={editabale.weaight} onChange={editabaleData}/><br /><br />
+            <input type="text" placeholder='brand' name='brand' value={editabale.brand} onChange={editabaleData}/><br /><br />
+            <input type="text" placeholder='discount' name='discount' value={editabale.discount} onChange={editabaleData}/><br /><br />
+            <input type="text" placeholder='stock' name='stock' value={editabale.stock} onChange={editabaleData}/><br /><br />
+            <button onClick={()=>updateProduct(editabale._id)}>update</button><br /><br />
             <button onClick={()=>setOpen(false)}>X</button>
           </div>
         </div>
@@ -130,7 +103,7 @@ console.log(title);
             return(
               <li key={index} style={{display:'grid',gridTemplateColumns:'3fr 1fr 2fr'}}>
                 <div style={{display:'flex',justifyContent:'space-around'}}>
-                  <img src={`${URL}/${item.Images[0]}`} alt="" style={{width:'60px',height:'60px'}}/>
+                  <img src={`${URL}/uploads/${item.Images[0]}`} alt="" style={{width:'60px',height:'60px'}}/>
                   <span style={{textAlign:'center'}}>{item.stock}</span>
                 </div>
                 <div>

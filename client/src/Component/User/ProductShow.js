@@ -59,8 +59,8 @@ const ProductShow = ({addToCart,addToWishlist}) => {
                     return (
                         <div key={index} className="product-show" style={{width:'250px',textAlign:'center',border:'1px solid #3333',padding:'10px'}}>
                             <div className="image"style={{height:'200px'}}>
-                                <Link to="/productDetails-Page">
-                                    <img src={`${URL}/${item.Images[0]}`} alt="pic" style={{width:'100%',height:'100%'}}/>
+                                <Link to={`/productDetails-Page/${item._id}`}>
+                                    <img src={`${URL}/uploads/${item.Images[0]}`} alt="pic" style={{width:'100%',height:'100%'}}/>
                                 </Link>
                             </div>
                             <h3>{item.title}</h3>

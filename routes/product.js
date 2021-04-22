@@ -23,7 +23,7 @@ var storage = multer.diskStorage({
 
 var upload = multer({
   storage: storage
-}).single("file");
+})
 
 router.post("/uploadImage", (req, res) => {
   console.log(req);
@@ -42,15 +42,66 @@ router.post("/uploadImage", (req, res) => {
   });
 });
 
-router.post("/uploadProduct", async (req, res) => {
-  console.log("post a product");
-  const product = new Product(req.body);
-  product.save((err) => {
+router.post("/uploadProduct",upload.array('Images'), async (req, res) => {
+
+
+let Images = [];
+
+  if (req.files.length > 0) {
+    Images = req.files.map((file) => {
+      return file.filename ;
+    });
+  }
+
+  const {
+    title,
+    skunumber,
+    description,
+    price,
+    quantity,
+    weaight,
+    category,
+    subcategory,
+    brand,
+    discount,
+    stock,
+    shippingdetails,
+    manufacturesdetails,
+    selectedsize,
+    feature,
+    trend,
+  } = req.body;
+
+console.log(req.body,'djfhdjkfkjfdfdffdf');
+console.log(Images,'imagesssssssssss');
+
+  const product = new Product({
+    Images,
+    title,
+    skunumber,
+    description,
+    price,
+    quantity,
+    weaight,
+    category,
+    subcategory,
+    brand,
+    discount,
+    stock,
+    shippingdetails,
+    manufacturesdetails,
+    selectedsize,
+    feature,
+    trend,
+  });
+  await product.save((err) => {
+    console.log(err);
+    
     if (err) return res.status(400).json({
+      
       success: false,
       err
     });
-
     return res.status(200).json({
       success: true
     });
@@ -93,43 +144,50 @@ router.get("/get-allproducts", async (req, res) => {
     
   })
 })
+router.get("/getDetailsProduct/:id",async (req, res)=>{
+  console.log( req.params.id,'iiidiiiidiiddddddiddididd');
+
+  await Product.findOne({_id: req.params.id})
+  .then(product => {
+    console.log(product);
+    
+    res.status(200).json(product)
+  })
+  .catch(error=>{
+    res.status(400).json({error})
+    console.log(error);
+    
+  })
+})
 router.post("/update-product/:id", async (req, res) => {
+  console.log(req.body,'jsadkdfhskjdhaskkj');
+  
   const {
-    Images,
     title,
     skunumber,
     description,
     price,
     quantity,
     weaight,
-    category,
-    subcategory,
     brand,
     discount,
     stock,
-    shippingdetails,
-    manufacturesdetails,
-    selectedsize
   } = req.body;
   await Product.findOne({_id:req.params.id})
   .then(product =>{
-    product.Images = Images
     product.title = title,
     product.skunumber = skunumber,
     product.description = description,
     product.price = price,
     product.quantity = quantity,
     product.weaight = weaight,
-    product.category = category,
-    product.subcategory = subcategory,
     product.brand = brand,
     product.discount = discount,
     product.stock = stock,
-    product.shippingdetails = shippingdetails,
-    product.manufacturesdetails = manufacturesdetails,
-    product.selectedsize = selectedsize
     product.save((error, product) =>{
       if(error){
+        console.log(error,'saveeeeee');
+        
         res.status(400).json({
           error
         })
@@ -142,6 +200,7 @@ router.post("/update-product/:id", async (req, res) => {
     })
   })
   .catch(error=>{
+    console.log(error,'catchhhhhhhh');
     res.status(500).json({
       message:'server error'
     })

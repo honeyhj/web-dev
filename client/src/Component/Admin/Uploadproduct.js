@@ -35,6 +35,15 @@ export default class Uploadproduct extends Component {
     };
   }
 
+
+
+
+
+
+
+
+
+
   // onDrop = (files) => {
   //   console.log(files[0]);
 
@@ -201,6 +210,42 @@ export default class Uploadproduct extends Component {
     this.setState({ feature: !this.state.feature });
   };
 
+submitProductForm = async(e) => {
+  e.preventDefault();
+    const form = new FormData();
+    form.append("title", this.state.title);
+    form.append("skunumber", this.state.skunumber);
+    form.append("description", this.state.description);
+    form.append("price", this.state.price);
+    form.append("quantity", this.state.quantity);
+    form.append("weaight", this.state.weaight);
+    form.append("category", this.state.category);
+    form.append("subcategory", this.state.subcategory);
+    form.append("brand", this.state.brand);
+    form.append("discount", this.state.discount);
+    form.append("stock", this.state.stock);
+    form.append("shippingdetails", this.state.shippingdetails);
+    form.append("manufacturesdetails", this.state.manufacturesdetails);
+    form.append("selectedsize", this.state.selectedsize);
+    form.append("feature", this.state.feature);
+    form.append("trend", this.state.trend);
+    for (let pic of this.state.Images) {
+      form.append("Images", pic);
+    }
+
+    await axios.post(`${URL}/uploadProduct`,form,{ headers: { "Content-Type": "application/json" }})
+      .then((response) => {
+        if (response.data.success) {
+          alert("Successfully uploaded");
+        } else {
+          alert("Faild to upload");
+        }
+      });
+  };
+newImageHandler =(e)=>{
+  this.setState({Images:[...this.state.Images, e.target.files[0]]});
+}
+
   onSubmit = (e) => {
     e.preventDefault();
     const {
@@ -310,11 +355,11 @@ export default class Uploadproduct extends Component {
           </div>
         ))} */}
 
-        <form onSubmit={this.onSubmit}>
+        <form onSubmit={this.submitProductForm}>
           <div className="form-group">
             <label htmlFor="exampleInputEmail1">Select Image</label>
 
-            <input type="file" name="file" onChange={this.onChangeHandler} />
+            <input type="file" name="Images" onChange={this.newImageHandler} />
           </div>
           <div className="form-group">
             <label htmlFor="exampleInputEmail1">Title</label>

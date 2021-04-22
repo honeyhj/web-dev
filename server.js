@@ -11,6 +11,7 @@ const path = require("path");
 //   useUnifiedTopology: true,
 // })
 
+
 mongoose
   .connect('mongodb+srv://amrfirstlearning:977amrfirstlearning977.@cluster0.qulux.mongodb.ne' +
     't/amrprsnldatabase?retryWrites=true&w=majority', {
@@ -40,6 +41,7 @@ app.use(require("./routes/wishlist"));
 // db.once("open", () => {
 //   console.log("database connected");
 // });
+
 app.use("/uploads", express.static("uploads"));
 
 app.listen(7000, () => {
