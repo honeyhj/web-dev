@@ -16,8 +16,8 @@ const OrderManage = () => {
     setEditabale(item)
     setOpen(true)
   }
-  const getOrder =  () => {
-     axios.get("http://localhost:7000/getOrder",
+  const getOrder = async () => {
+    await axios.get("http://localhost:7000/getOrder",
       {
         headers: {
           Accept: "application/json",
