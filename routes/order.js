@@ -50,8 +50,9 @@ router.post("/createOrder", userAuth, checkRole(['user']), async (req, res) => {
 })
 router.get("/getOrder", userAuth, checkRole(['user']), async (req, res) =>{
   await Orders.find()
-  .then(myOrder => {
-    res.status(200).json(myOrder)
+  .then(result => {
+    console.log(result,'resultttttttttttttttt');
+    res.status(200).json(result)
   })
   .catch(error => {
     res.status(400).json({ error: error })

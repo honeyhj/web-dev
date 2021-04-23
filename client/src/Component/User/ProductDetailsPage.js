@@ -7,7 +7,7 @@ import axios from 'axios';
 import URL from './Url';
 const ProductDetailsPage = () => {
     const { id } = useParams()
-    const [detailsProduct, setDetailsProduct] = useState({});
+    const [detailsProduct, setDetailsProduct] = useState([]);
     const getDetails = async () => {
         
         await axios.get(`${URL}/getDetailsProduct/${id}`, {
@@ -30,11 +30,11 @@ const ProductDetailsPage = () => {
     return (
         <>
             <Header></Header>
-            {!detailsProduct ? <p>loading........</p> :
+            {detailsProduct.length === 0 ? <p>loading........</p> :
                         <div id="productDetails">
                         <div className="productDetails-wrapper">
                             <div className="productDetails-item1">
-                                <img src={`${URL}/uploads/${detailsProduct.Images[0]}}`} />
+                                <img src={`${URL}/uploads/${detailsProduct.Images[0]}`} alt={detailsProduct.title}/>
                             </div>
                             <div className="productDetails-item2">
                                 <div className="content">
