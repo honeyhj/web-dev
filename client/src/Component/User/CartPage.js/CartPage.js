@@ -104,7 +104,7 @@ const CartPage = ({ cart, addToCart, deleteCart, clearCart, products }) => {
             <input type="text" value={postal} placeholder="postal" onChange={(e) => setPostal(e.target.value)} /><br /><br />
             <input type="text" value={road} placeholder="road" onChange={(e) => setRoad(e.target.value)} /><br /><br />
             {/* <PaypalExpressBtn env={env} client={client} currency={currency} total={total} onError={onError} onSuccess={onSuccess} onCancel={onCancel} /> */}
-            <button onClick={setOrder}>paypal</button>
+            <button onClick={setOrder}>paypa</button>
           </div>
         </>
       :
