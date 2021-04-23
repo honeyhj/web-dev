@@ -11,7 +11,6 @@ const ProductDetailsPage = () => {
     const [loading,setLoading] = useState(false)
     const getDetails = async () => {
         setLoading(true)
-        
         await axios.get(`${URL}/getDetailsProduct/${id}`, {
             headers: {
                 "Content-Type": "application/json",
@@ -21,9 +20,11 @@ const ProductDetailsPage = () => {
             .then(data => {
                 setDetailsProduct(data.data)
                 setLoading(false)
+                console.log(data);
+                
             })
             .catch(error => {
-                console.log(error,'jkfdskjfdsjkfdskjfsdkjfdskjhfdsjfdkjf');
+                console.log(error,'kjk');
             })
     }
     useEffect(() => {
@@ -33,12 +34,11 @@ const ProductDetailsPage = () => {
     return (
         <>
             <Header></Header>
-        
-            {detailsProduct.length==0? <p>loading........</p> :
+            {detailsProduct.length===0? <p>loading........</p> :
                         <div id="productDetails">
                         <div className="productDetails-wrapper">
                             <div className="productDetails-item1">
-                                <img src={`${URL}/uploads/${detailsProduct.Images[0]}`} />
+                                <img src={`${URL}/uploads/${detailsProduct.Images[0]}`} alt="pic"/>
                             </div>
                             <div className="productDetails-item2">
                                 <div className="content">
@@ -47,6 +47,8 @@ const ProductDetailsPage = () => {
                                     <div className="details">
                                         <h4>{detailsProduct.description}</h4>
                                         <ul>
+                                            <li>Lorem ipsum dolor sit amet.</li>
+                                            <li>Lorem ipsum dolor sit amet.</li>
                                             <li>Lorem ipsum dolor sit amet.</li>
                                             <li>Lorem ipsum dolor sit amet.</li>
                                             <li>Lorem ipsum dolor sit amet.</li>

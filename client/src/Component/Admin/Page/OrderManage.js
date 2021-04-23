@@ -12,6 +12,7 @@ const OrderManage = () => {
     newEditiable[e.target.name] = e.target.value;
     setEditabale(newEditiable)
   }
+
   const openDetails = (item) => {
     setEditabale(item)
     setOpen(true)
