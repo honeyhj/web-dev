@@ -39,8 +39,8 @@ const OrderManage = () => {
     editabale.orderstatus,
       {
         headers: {
-          "Content-Type": "application/json",
           Accept: "application/json",
+          "Content-Type": "application/json",
           "auth": localStorage.getItem('auth')
         }
       })

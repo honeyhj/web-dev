@@ -59,6 +59,8 @@ router.get("/getOrder", async (req, res) =>{
   })
 })
 router.post("/updateOrder", userAuth, checkRole(['user']), async (req, res) => {
+  console.log(req.body);
+  
   Orders.UpdateOne({ _id: req.user.user_id }, {
     $set: { orderstatus: req.body.orderstatus }
   })
