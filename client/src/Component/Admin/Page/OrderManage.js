@@ -22,8 +22,7 @@ const OrderManage = () => {
       {
         headers: {
           Accept: "application/json",
-          "Cotent-Type": "application/json",
-          "auth": localStorage.getItem('auth')
+          "Cotent-Type": "application/json"
         }
       }
     )
@@ -36,8 +35,8 @@ const OrderManage = () => {
       })
   }
   const updateOrder = async () => {
-    await axios.post(`${URL}/updateOrder/`,
-      editabale,
+    await axios.post("http://localhost:7000/updateOrder",
+    editabale.orderstatus,
       {
         headers: {
           "Content-Type": "application/json",
@@ -55,7 +54,7 @@ const OrderManage = () => {
   useEffect(() => {
     getOrder()
   }, [])
-  console.log(orders);
+  console.log(editabale.orderstatus);
   return (
     <Layout>
       {open

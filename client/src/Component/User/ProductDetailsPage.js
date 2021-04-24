@@ -8,7 +8,6 @@ import URL from './Url';
 const ProductDetailsPage = () => {
     const { id } = useParams()
     const [detailsProduct, setDetailsProduct] = useState([]);
-
     
     const [loading,setLoading] = useState(false)
     const getDetails = async () => {

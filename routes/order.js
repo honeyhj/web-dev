@@ -48,7 +48,7 @@ router.post("/createOrder", userAuth, checkRole(['user']), async (req, res) => {
   })
   
 })
-router.get("/getOrder", userAuth, checkRole(['user']), async (req, res) =>{
+router.get("/getOrder", async (req, res) =>{
   await Orders.find()
   .then(result => {
     console.log(result,'resultttttttttttttttt');

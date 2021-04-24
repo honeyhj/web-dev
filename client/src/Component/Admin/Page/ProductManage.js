@@ -84,6 +84,7 @@ console.log(product);
         ?
         <div style={{width:'100%',height:'100vh',display:'flex',justifyContent: "center",alignItem:'center'}}>
           <div style={{width:'300px',height:'auto',border:'1px solid #3333'}}>
+            
             <input type="text" placeholder='title' name='title' value={editabale.title} onChange={editabaleData}/><br /><br />
             <input type="text" placeholder='skunumber' name='skunumber' value={editabale.skunumber} onChange={editabaleData}/><br /><br />
             <input type="text" placeholder='description' name='description' value={editabale.description} onChange={editabaleData}/><br /><br />
