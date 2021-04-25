@@ -39,6 +39,8 @@ router.post("/addsubdrop", async (req, res) => {
   );
   if (data) {
     res.send(data);
+    console.log(data);
+    
   }
 });
 router.post("/addsubMega", async (req, res) => {

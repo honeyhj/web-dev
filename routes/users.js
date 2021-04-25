@@ -97,4 +97,15 @@ router.get("/getAllUser",async (req, res)=>{
     res.status(500).json(error)
   })
 })
+router.delete("/deleteUser/:id", async (req, res)=>{
+  await User.deleteOne({_id: req.params.id})
+  .then(result=>{
+    res.status(200).json({
+      messege:'deleted the user'
+    })
+  })
+  .catch(error=>{
+    res.status(500).json(error)
+  })
+})
 module.exports = router;
