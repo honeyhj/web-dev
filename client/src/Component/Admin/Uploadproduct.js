@@ -36,14 +36,6 @@ export default class Uploadproduct extends Component {
   }
 
 
-
-
-
-
-
-
-
-
   // onDrop = (files) => {
   //   console.log(files[0]);
 
@@ -81,7 +73,6 @@ export default class Uploadproduct extends Component {
         this.setState({ sub: get, category: t.name })
       }
     })
-
   }
   subcategory = (e, t) => {
     this.setState({ subcategory: t.name })
@@ -177,7 +168,6 @@ export default class Uploadproduct extends Component {
     // console.log(event.target.files[0]);
     let formData = new FormData();
     formData.append("file", event.target.files[0]);
-
     const config = {
       header: { "content-type": "multipart/form-data" },
     };

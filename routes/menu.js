@@ -24,7 +24,6 @@ router.get("/getmenus", (req, res) => {
 router.post("/addsubdrop", async (req, res) => {
   const { selecteddropdwnholder, subdropdownmenu ,topCategory} = req.body;
   console.log(req.body);
-
   const data = await Menus.updateOne(
     { CategoryName: selecteddropdwnholder },
     {
@@ -81,7 +80,6 @@ router.get("/deletecategory/:id", async (req, res) => {
     res.send({ success: true });
   }
 });
-
 
 router.post("/editCategory", async (req, res) => {
   const { oldCategory,editableCategory } = req.body;

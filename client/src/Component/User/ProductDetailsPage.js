@@ -39,7 +39,7 @@ const ProductDetailsPage = () => {
                         <div id="productDetails">
                         <div className="productDetails-wrapper">
                             <div className="productDetails-item1">
-                                <img src={`${URL}/uploads/${detailsProduct.Images[0]}`} alt="pic"/>
+                                <img src={`${URL}/uploads/${detailsProduct.Images[1]}`} alt="pic"/>
                             </div>
                             <div className="productDetails-item2">
                                 <div className="content">

@@ -159,7 +159,7 @@ router.get("/getDetailsProduct/:id",async (req, res)=>{
     
   })
 })
-router.post("/update-product/:id", async (req, res) => {
+router.post("/update-product/:id",upload.array('Images') async (req, res) => {
   console.log(req.body,'jsadkdfhskjdhaskkj');
   
   const {
