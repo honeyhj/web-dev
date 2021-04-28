@@ -47,8 +47,9 @@ const ProductManage = () => {
       })
   }
   const updateProduct = async (id) => {
+    
     await axios.post(`${URL}/update-product/${id}`,
-      editabale,
+      {...editabale,Images},
       {
         headers: {
           "Content-Type": "application/json",
@@ -65,7 +66,8 @@ const ProductManage = () => {
   useEffect(() => {
     getAllProduct()
   }, [])
-  console.log(product);
+  console.log(editabale);
+  console.log(Images);
 
   const openDetails = (item) => {
     setEditabale(item)
@@ -89,13 +91,13 @@ const ProductManage = () => {
       .post(`${URL}/uploadImage`, formData, config)
       .then((response) => {
         console.log("kk", response);
-        // if (response.data.success) {
-        //   setImages(
-        //     [...Images, response.data.image],
-        //   );
-        // } else {
-        //   alert("Failed to save the Image in Server");
-        // }
+        if (response.data.success) {
+          setImages(
+            [...Images, response.data.fileName],
+          );
+        } else {
+          alert("Failed to save the Image in Server");
+        }
       })
       .catch((err) => {
         console.log("hi");
@@ -125,7 +127,7 @@ const ProductManage = () => {
                     )
                   })}
                 </div>
-                <input type="file" name="Images" onChange={onChangeHandler} />
+                <input type="file" name="file" onChange={onChangeHandler} />
                 <input type="text" placeholder='title' name='title' value={editabale.title} onChange={editabaleData} /><br /><br />
                 <input type="text" placeholder='skunumber' name='skunumber' value={editabale.skunumber} onChange={editabaleData} /><br /><br />
                 <input type="text" placeholder='description' name='description' value={editabale.description} onChange={editabaleData} /><br /><br />

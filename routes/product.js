@@ -24,10 +24,14 @@ var storage = multer.diskStorage({
 var upload = multer({
   storage: storage
 })
+var singleUpload = multer({
+  storage: storage
+}).single('file')
 
-router.post("/uploadImage", (req, res) => {
-  console.log(req);
-  upload(req, res, (err) => {
+router.post("/uploadImage",(req, res,next) => {
+  singleUpload(req, res, (err) => {
+    console.log(err,'fgjkjkhffffffff');
+    
     if (err) {
       return res.json({
         success: false,
@@ -39,7 +43,7 @@ router.post("/uploadImage", (req, res) => {
       image: res.req.file.path,
       fileName: res.req.file.filename,
     });
-  });
+  })
 });
 
 router.post("/uploadProduct",upload.array('Images'), async (req, res) => {
@@ -159,7 +163,7 @@ router.get("/getDetailsProduct/:id",async (req, res)=>{
     
   })
 })
-router.post("/update-product/:id",upload.array('Images') async (req, res) => {
+router.post("/update-product/:id",upload.array('Images'), async (req, res) => {
   console.log(req.body,'jsadkdfhskjdhaskkj');
   
   const {
