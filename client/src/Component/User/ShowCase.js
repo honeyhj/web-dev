@@ -3,9 +3,10 @@ import React, { useEffect, useState } from 'react';
 import MainSlider from './MainSlider';
 import URL from './Url';
 import './user.css'
-const ShowCase = () => {
+const ShowCase = (props) => {
     const [box, setBox] = useState(false)
     const [menus, setMenus] = useState([])
+   
     const priceBox = () => {
 
     }
@@ -21,7 +22,9 @@ const ShowCase = () => {
     useEffect(() => {
         getmenus()
     }, [])
-    console.log(menus);
+
+
+    // console.log(menus);
 
     return (
         <div id="showCase">
@@ -30,7 +33,7 @@ const ShowCase = () => {
                     <div className="box">
                         <div className="sub-box">
                             <button type="button" className="price-btn" onClick={() => setBox(!box)}>Price Filter</button>
-                            <input type="search" name="search" placeholder="Enter search item" className="search-inp" />
+                            <input type="search" name="search" onChange={(e)=>props.setSearchTerm(e.target.value)} placeholder="Enter search item" className="search-inp" />
                         </div>
                         {
                             box ?
