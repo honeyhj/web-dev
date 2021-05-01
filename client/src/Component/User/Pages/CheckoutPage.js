@@ -23,7 +23,7 @@ const CheckoutPage = ({cart}) => {
     const orderInfo = {
       orderid,
       paymentid,
-      products,
+      products:cart,
       total,
       dateofpurcashe,
       orderstatus,

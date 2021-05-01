@@ -14,6 +14,15 @@ const UserManage = () => {
         console.log(error);
       })
   }
+  const deleteUser =(id)=>{
+    axios.delete(`${URL}/deleteUser/${id}`)
+    .then(result => {
+      setUser(result.data)
+    })
+    .catch(error => {
+      console.log(error);
+    })
+  }
   useEffect(() => {
     getAllUser()
   }, []);
@@ -35,7 +44,7 @@ const UserManage = () => {
                   </div>
                   <div style={{ display: 'flex', justifyContent: 'space-between' }}>
                     <button onClick='' style={{ width: '50px', height: '50px' }}>+</button>
-                    <button onClick='' style={{ width: '50px', height: '50px' }}>-</button>
+                    <button onClick={()=>deleteUser(item._id)} style={{ width: '50px', height: '50px' }}>-</button>
                   </div>
                 </li>
               )

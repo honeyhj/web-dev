@@ -48,31 +48,38 @@ router.post("/createOrder", userAuth, checkRole(['user']), async (req, res) => {
   })
   
 })
-router.get("/getOrder", userAuth, checkRole(['user']), async (req, res) =>{
+router.get("/getOrder", async (req, res) =>{
   await Orders.find()
-  .then(myOrder => {
-    res.status(200).json(myOrder)
+  .then(result => {
+    console.log(result,'resultttttttttttttttt');
+    res.status(200).json(result)
   })
   .catch(error => {
     res.status(400).json({ error: error })
   })
 })
 router.post("/updateOrder", userAuth, checkRole(['user']), async (req, res) => {
-  Orders.UpdateOne({ _id: req.user.user_id }, {
-    $set: { orderstatus: req.body.orderstatus }
+  console.log(req.body.editabale,req.body.id,'bodyyyy ');
+  const {editabale,id} = req.body;
+  Orders.updateOne({ userid: req.user.user_id ,"orderid":id}, {
+    $set: { orderstatus: editabale }
   })
     .then(product => {
+      console.log(product,'product log');
+      
       res.status(200).json({ message: "updated orderstatus" })
     })
     .catch(error => {
       res.status(500).json({ message: "failed to update order" })
     })
 })
-router.post("/deleteOrder/:id", userAuth, checkRole(['user']), async (req, res) => {
-  Orders.UpdateOne({ id: req.user.user_id }, {
-    $pull: { orderid: { id: req.params.id } }
-  })
+router.delete("/deleteOrder/:id", userAuth, checkRole(['user']), async (req, res) => {
+  console.log(req.params.id,'params iiidiiiidiiddddddiddididd');
+  
+  Orders.deleteOne({ userid: req.user.user_id ,"orderid":req.params.id})
     .then(product => {
+      console.log(product,'delete order');
+      
       res.status(200).json({ message: "deleted order" })
     })
     .catch(error => {

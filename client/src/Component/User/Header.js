@@ -68,7 +68,16 @@ const Header = (props) => {
           <div className="header-item3" style={{'display':'flex','justifyContent':'space-around'}}>
             <Link to="/cartPage"><span className="cart"><sup>{props.cartLength}</sup>cart</span></Link><br />
             <Link to="/wishlistPage"><span className="cart"><sup>{props.wishlistLength}</sup>wish</span></Link>
-            
+            <div className="extra_menus">
+                <li>user
+                  <ul>
+                    <li><Link to="/userregister">register</Link></li>
+                    <li><Link to="/userlogin">login</Link></li>
+                    <li><Link to="">logout</Link></li>
+                    <li><Link to="/admindashboard/uploadproduct">dashboard</Link></li>
+                  </ul>
+                </li>
+            </div>
           </div>
         </div>
         {

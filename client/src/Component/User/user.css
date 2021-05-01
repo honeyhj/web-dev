@@ -40,6 +40,18 @@
     justify-content: center;
     align-items: center;
 }
+.header .header-item3 .extra_menus  li{
+    color:#CCCECF;
+}
+.header .header-item3 .extra_menus  li > ul{
+    display: none;
+    border: 1px solid #2222;
+    margin-top: 150px;
+    margin-right: 10px;
+}
+.header .header-item3 .extra_menus  li:hover > ul{
+    display: block;
+}
 .header .header-item3 .cart{
     cursor: pointer;
     font-size: 20px;
