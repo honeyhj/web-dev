@@ -6,6 +6,7 @@ import './user.css'
 const ShowCase = () => {
     const [box, setBox] = useState(false)
     const [menus, setMenus] = useState([])
+    const [searchState , setsearchState]=useState('');
     const priceBox = () => {
 
     }

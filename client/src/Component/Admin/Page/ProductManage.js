@@ -10,10 +10,6 @@ const ProductManage = () => {
   const [editabale, setEditabale] = useState({});
   const [Images, setImages] = useState([]);
 
-
-
-
-
   const getAllProduct = async () => {
     await axios.get(`${URL}/get-allproducts`, {
       headers: {
@@ -47,7 +43,7 @@ const ProductManage = () => {
       })
   }
   const updateProduct = async (id) => {
-    
+
     await axios.post(`${URL}/update-product/${id}`,
       {...editabale,Images},
       {
@@ -113,7 +109,6 @@ const ProductManage = () => {
   console.log(Images);
   return (
     <Layout>
-
       <div>
         <ul>
           {open
