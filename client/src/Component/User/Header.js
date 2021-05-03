@@ -19,7 +19,7 @@ const Header = (props) => {
   useEffect(() => {
     getmenus()
   }, [])
-  console.log(props.cartLength);
+  // console.log(props.cartLength);
   
   return (
     <div className="row" style={{ justifyContent: "center" }}>

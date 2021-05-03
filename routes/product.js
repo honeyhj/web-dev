@@ -226,6 +226,22 @@ router.get("/delete-product/:id",async (req,res)=>{
 })
 })
 
+
+router.get("/getSearchProduct/:term",async (req,res)=>{
+  await Product.find({ $text: { $search: req.params.term } })
+  .then(product => {
+    res.status(200).json({
+      success: true,
+      product,
+    })
+  })
+  .catch(error=>{
+    res.status(400).json({error})
+    console.log(error);
+    
+  })
+})
+
 module.exports = router;
 
 // const express = require('express');

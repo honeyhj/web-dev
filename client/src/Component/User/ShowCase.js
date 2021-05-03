@@ -3,26 +3,29 @@ import React, { useEffect, useState } from 'react';
 import MainSlider from './MainSlider';
 import URL from './Url';
 import './user.css'
-const ShowCase = () => {
+const ShowCase = (props) => {
     const [box, setBox] = useState(false)
     const [menus, setMenus] = useState([])
-    const [searchState , setsearchState]=useState('');
+
+
     const priceBox = () => {
 
     }
     const getmenus = async () => {
         await axios.get(`${URL}/getmenus`)
-        .then((data) => {
-            setMenus(data.data)
-        })
-        .catch(error=>{
-            console.log(error);
-        })
+            .then((data) => {
+                setMenus(data.data)
+            })
+            .catch(error => {
+                console.log(error);
+            })
     };
     useEffect(() => {
         getmenus()
     }, [])
-    console.log(menus);
+
+
+    // console.log(menus);
 
     return (
         <div id="showCase">
@@ -31,30 +34,30 @@ const ShowCase = () => {
                     <div className="box">
                         <div className="sub-box">
                             <button type="button" className="price-btn" onClick={() => setBox(!box)}>Price Filter</button>
-                            <input type="search" name="search" placeholder="Enter search item" className="search-inp" />
+                            <input type="search" name="search" onChange={(e) => props.setSearchTerm(e.target.value)} placeholder="Enter search item" className="search-inp" />
                         </div>
                         {
                             box ?
                                 <div className="dropBox">
                                     <div>
-                                        <input type="checkbox" name="" id="" />
-                                        <label>0-50</label>
+                                        <input type="radio" name="price" id="" style={{margin:'0 10px'}}/>
+                                        <label>Under 5000/-</label>
                                     </div>
                                     <div>
-                                        <input type="checkbox" name="" id="" />
-                                        <label>0-50</label>
+                                        <input type="radio" name="price" id="" style={{margin:'0 10px'}} />
+                                        <label>Under 15000/-</label>
                                     </div>
                                     <div>
-                                        <input type="checkbox" name="" id="" />
-                                        <label>0-50</label>
+                                        <input type="radio" name="price" id=""  style={{margin:'0 10px'}}/>
+                                        <label>Under 20000/-</label>
                                     </div>
                                     <div>
-                                        <input type="checkbox" name="" id="" />
-                                        <label>0-50</label>
+                                        <input type="radio" name="price" id="" style={{margin:'0 10px'}} />
+                                        <label>Under 25000/-</label>
                                     </div>
                                     <div>
-                                        <input type="checkbox" name="" id="" />
-                                        <label>0-50</label>
+                                        <input type="radio" name="price" id="" style={{margin:'0 10px'}} />
+                                        <label>Under 30000/-</label>
                                     </div>
                                 </div>
                                 : null

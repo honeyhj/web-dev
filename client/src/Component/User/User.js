@@ -163,7 +163,7 @@ const User = () => {
     getCart()
     getWishlist()
   }, [loading])
-  console.log(products);
+  // console.log(products);
 
   return (
     <BrowserRouter>
