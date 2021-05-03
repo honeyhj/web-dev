@@ -6,33 +6,29 @@ import './user.css'
 const ShowCase = (props) => {
     const [box, setBox] = useState(false)
     const [menus, setMenus] = useState([])
-    const [l, setL] = useState(0)
-    const [h, setH] = useState(0)
+    
     // s=0
     // e=50
    
+
+
     const priceBox = () => {
 
     }
     const getmenus = async () => {
         await axios.get(`${URL}/getmenus`)
-        .then((data) => {
-            setMenus(data.data)
-        })
-        .catch(error=>{
-            console.log(error);
-        })
+            .then((data) => {
+                setMenus(data.data)
+            })
+            .catch(error => {
+                console.log(error);
+            })
     };
     useEffect(() => {
         getmenus()
     }, [])
 
-const setLimit=(l,h)=>{
-setL(l);
-setH(h);
-axios.get()
 
-}
     // console.log(menus);
 
     return (
@@ -42,30 +38,31 @@ axios.get()
                     <div className="box">
                         <div className="sub-box">
                             <button type="button" className="price-btn" onClick={() => setBox(!box)}>Price Filter</button>
-                            <input type="search" name="search" onChange={(e)=>props.setSearchTerm(e.target.value)} placeholder="Enter search item" className="search-inp" />
+                            <input type="search" name="search" onChange={(e) => props.setSearchTerm(e.target.value)} placeholder="Enter search item" className="search-inp" />
                         </div>
                         {
                             box ?
                                 <div className="dropBox">
                                     <div>
-                                        <input type="checkbox" name="" id="" />
-                                        <label>0-50</label>
+                                        <input type="radio" name="price" id="" onChange={()=>props.setProductByRange(1,5000)} style={{margin:'0 10px'}}/>
+                                        <label>Under 5000/-</label>
                                     </div>
                                     <div>
-                                        <input type="checkbox" onClick={()=>setLimit(50,100)} name="" id="" />
-                                        <label>0-50</label>
+                                       
+                                        <input type="radio" name="price"  onChange={()=>props.setProductByRange(5000,15000)} id="" style={{margin:'0 10px'}} />
+                                        <label>Under 15000/-</label>
                                     </div>
                                     <div>
-                                        <input type="checkbox" name="" id="" />
-                                        <label>0-50</label>
+                                        <input type="radio" name="price" id=""  onChange={()=>props.setProductByRange(15000,20000)} style={{margin:'0 10px'}}/>
+                                        <label>Under 20000/-</label>
                                     </div>
                                     <div>
-                                        <input type="checkbox" name="" id="" />
-                                        <label>0-50</label>
+                                        <input type="radio" name="price" id="" style={{margin:'0 10px'}} />
+                                        <label>Under 25000/-</label>
                                     </div>
                                     <div>
-                                        <input type="checkbox" name="" id="" />
-                                        <label>0-50</label>
+                                        <input type="radio" name="price" id="" style={{margin:'0 10px'}} />
+                                        <label>Under 30000/-</label>
                                     </div>
                                 </div>
                                 : null

@@ -6,8 +6,9 @@ import man1 from './img/man1.jpg';
 import axios from 'axios';
 import URL from './Url';
 import { set } from 'mongoose';
-const ProductShow = ({ addToCart, addToWishlist, term }) => {
+const ProductShow = ({ addToCart, addToWishlist, term, lower, higher }) => {
     const [products, setProducts] = useState([]);
+    const [productByRange, setProductByRange] = useState([]);
     const [psize, setpSize] = useState();
     const [skip, setSkip] = useState(0);
     const [limit, setLimit] = useState(8);
@@ -39,6 +40,7 @@ const ProductShow = ({ addToCart, addToWishlist, term }) => {
                     setLoadMores(false)
                 }
                 setLoading(false)
+                setProductByRange(data.data.productsByPrice)
                 console.log(data.data)
             })
     }
@@ -56,12 +58,12 @@ const ProductShow = ({ addToCart, addToWishlist, term }) => {
         setLimit(8)
     }
     const getSearchProduct = async () => {
-      
+
         await axios.get(`${URL}/getSearchProduct/${term}`).then(data => {
-            console.log(data.data,'search data')
-                setProducts(data.data.product)
-                setLoadMores(false)
-                setLoading(false)
+            console.log(data.data, 'search data')
+            setProducts(data.data.product)
+            setLoadMores(false)
+            setLoading(false)
 
         })
         // products.map(item=>{
@@ -75,16 +77,68 @@ const ProductShow = ({ addToCart, addToWishlist, term }) => {
         // })
     }
     useEffect(async () => {
-        if(!term.length){
-            const variables = { skip, limit } 
+        if (!term.length) {
+            const variables = { skip, limit }
             getAllProduct(variables)
         }
-        else{
+        else {
             await getSearchProduct();
         }
-        
-       
+
+
     }, [term])
+
+    const setProductByrange =async () => {
+        console.log(lower,higher,'settting')
+        switch ( lower, higher) {
+            case  lower > 0 && higher <= 5000:
+                setProducts(productByRange.under5k)
+                break;
+            case  lower > 5000 && higher <= 10000:
+                setProducts(productByRange.under10k)
+                break;
+            case  lower > 10000 && higher <= 15000:
+                setProducts(productByRange.under15k)
+                break;
+            case  lower > 15000 && higher <= 20000:
+                setProducts(productByRange.under20k)
+                break;
+            case lower > 20000 && higher <= 25000:
+                setProducts(productByRange.under25k)
+                break;
+            default: 
+               break;
+        }
+
+    }
+    useEffect(()=>{
+        // switch ( lower, higher) {
+        //     case  lower > 0 && higher <= 5000:
+        //         setProducts(productByRange.under5k)
+        //         break;
+        //     case  lower > 5000 && higher <= 10000:
+        //         setProducts(productByRange.under10k)
+        //         break;
+        //     case  lower > 10000 && higher <= 15000:
+        //         setProducts(productByRange.under15k)
+        //         break;
+        //     case  lower > 15000 && higher <= 20000:
+        //         setProducts(productByRange.under20k)
+        //         break;
+        //     case lower > 20000 && higher <= 25000:
+        //         setProducts(productByRange.under25k)
+        //         break;
+        //     default: 
+        //        break;
+        // }
+        if( parseInt(lower) >0 && parseInt(higher) <=5000){
+           
+            setProducts(productByRange.under5k)
+        }
+       
+
+    },[lower])
+
     return (
         <div className="product-container">
             <h2>Featured Product</h2>
@@ -101,6 +155,7 @@ const ProductShow = ({ addToCart, addToWishlist, term }) => {
                                             </Link>
                                         </div>
                                         <h3>{item.title}</h3>
+                                        <h4>{item.price}</h4>
                                         <div className="show-addCart">
                                             <button type="button" className="btn" onClick={() => addToCart(item._id, "add")} style={{ border: '1px solid #333', background: '#dddd', color: '#222', margin: '7px' }}>Add to cart</button>
                                             <button type="button" onClick={() => addToWishlist(item._id)} style={{ border: '1px solid #333', background: '#dddd', color: '#222', margin: '7px' }}>add to favourite</button>

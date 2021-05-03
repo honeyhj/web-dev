@@ -208,7 +208,7 @@ router.get("/getDetailsProduct/:id",async (req, res)=>{
   })
 })
 router.post("/update-product/:id",upload.array('Images'), async (req, res) => {
-  console.log(req.body,'jsadkdfhskjdhaskkj');
+  console.log(req.body,req.params.id,'jsadkdfhskjdhaskkj');
   
   const {
     title,
@@ -220,6 +220,7 @@ router.post("/update-product/:id",upload.array('Images'), async (req, res) => {
     brand,
     discount,
     stock,
+    Images
   } = req.body;
   await Product.findOne({_id:req.params.id})
   .then(product =>{
@@ -232,6 +233,7 @@ router.post("/update-product/:id",upload.array('Images'), async (req, res) => {
     product.brand = brand,
     product.discount = discount,
     product.stock = stock,
+    product.Images = Images,
     product.save((error, product) =>{
       if(error){
         console.log(error,'saveeeeee');
@@ -241,7 +243,7 @@ router.post("/update-product/:id",upload.array('Images'), async (req, res) => {
         })
       }
       if(product){
-        res.status(400).json({
+        res.status(200).json({
           message:'updated product'
         })
       }

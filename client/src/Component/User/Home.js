@@ -7,16 +7,22 @@ import TopHeading from './TopHeading';
 
 const Home = ({ cartLength, addToCart, addToWishlist }) => {
     const [term, setTerm] = useState("");
+    const [l, setL] = useState(0)
+    const [h, setH] = useState(0)
     const setSearchTerm = (searchterm) => {
         setTerm(searchterm)
         // console.log(searchterm,'llllooolll')
+    }
+    const setProductByRange=(lower,higher)=>{
+        setL(lower);
+        setH(higher)
     }
     return (
         <>
             <Header cartLength={cartLength}></Header>
             <TopHeading></TopHeading>
-            <ShowCase setSearchTerm={setSearchTerm}></ShowCase>
-            <ProductShow term={term} addToCart={addToCart} addToWishlist={addToWishlist}></ProductShow>
+            <ShowCase setSearchTerm={setSearchTerm} setProductByRange={setProductByRange}></ShowCase>
+            <ProductShow term={term} lower={l} higher={h} addToCart={addToCart} addToWishlist={addToWishlist}></ProductShow>
         </>
     );
 };
