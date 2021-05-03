@@ -130,7 +130,29 @@ router.post("/get-products", async (req, res) => {
     res.status(200).json({
       success: true,
       product,
-      postSize: product.length
+      postSize: product.length,
+      priceRange: {
+        under5k: 5000,
+        under10k: 10000,
+        under15k: 15000,
+        under20k: 20000,
+        under30k: 30000,
+      },
+      productsByPrice: {
+        under5k: product.filter((product) => product.price <= 5000),
+        under10k: product.filter(
+          (product) => product.price > 5000 && product.price <= 10000
+        ),
+        under15k: product.filter(
+          (product) => product.price > 10000 && product.price <= 15000
+        ),
+        under20k: product.filter(
+          (product) => product.price > 15000 && product.price <= 20000
+        ),
+        under30k: product.filter(
+          (product) => product.price > 20000 && product.price <= 30000
+        ),
+      },
     })
   })
 })
@@ -140,6 +162,28 @@ router.get("/get-allproducts", async (req, res) => {
     res.status(200).json({
       success: true,
       product,
+      priceRange: {
+        under5k: 5000,
+        under10k: 10000,
+        under15k: 15000,
+        under20k: 20000,
+        under30k: 30000,
+      },
+      productsByPrice: {
+        under5k: product.filter((product) => product.price <= 5000),
+        under10k: product.filter(
+          (product) => product.price > 5000 && product.price <= 10000
+        ),
+        under15k: product.filter(
+          (product) => product.price > 10000 && product.price <= 15000
+        ),
+        under20k: product.filter(
+          (product) => product.price > 15000 && product.price <= 20000
+        ),
+        under30k: product.filter(
+          (product) => product.price > 20000 && product.price <= 30000
+        ),
+      },
     })
   })
   .catch(error=>{

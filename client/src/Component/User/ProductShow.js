@@ -39,6 +39,7 @@ const ProductShow = ({ addToCart, addToWishlist, term }) => {
                     setLoadMores(false)
                 }
                 setLoading(false)
+                console.log(data.data)
             })
     }
     useEffect(() => {
@@ -55,6 +56,7 @@ const ProductShow = ({ addToCart, addToWishlist, term }) => {
         setLimit(8)
     }
     const getSearchProduct = async () => {
+      
         await axios.get(`${URL}/getSearchProduct/${term}`).then(data => {
             console.log(data.data,'search data')
                 setProducts(data.data.product)
@@ -62,9 +64,26 @@ const ProductShow = ({ addToCart, addToWishlist, term }) => {
                 setLoading(false)
 
         })
+        // products.map(item=>{
+        //     if(item.title.match(`/${term}-\w+-\w+(?=\s|$)/g`)){
+        //         console.log(item)
+        //     }
+        //     else{
+        //         console.log(item.description,'didnt match',item.description.match(`/${term}-\w+-\w+(?=\s|$)/g`))
+        //     }
+        //     return;
+        // })
     }
     useEffect(async () => {
-        await getSearchProduct();
+        if(!term.length){
+            const variables = { skip, limit } 
+            getAllProduct(variables)
+        }
+        else{
+            await getSearchProduct();
+        }
+        
+       
     }, [term])
     return (
         <div className="product-container">

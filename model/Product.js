@@ -24,12 +24,12 @@ const productSchema = mongoose.Schema(
     },
     quantity: {
       type: Number,
-      default: 0
+      default: 1
 
     },
-    weaight: {
+    weight: {
       type: Number,
-      default: 0
+      default: 1
     },
     category: {
       type: String

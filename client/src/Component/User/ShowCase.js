@@ -6,6 +6,10 @@ import './user.css'
 const ShowCase = (props) => {
     const [box, setBox] = useState(false)
     const [menus, setMenus] = useState([])
+    const [l, setL] = useState(0)
+    const [h, setH] = useState(0)
+    // s=0
+    // e=50
    
     const priceBox = () => {
 
@@ -23,7 +27,12 @@ const ShowCase = (props) => {
         getmenus()
     }, [])
 
+const setLimit=(l,h)=>{
+setL(l);
+setH(h);
+axios.get()
 
+}
     // console.log(menus);
 
     return (
@@ -43,7 +52,7 @@ const ShowCase = (props) => {
                                         <label>0-50</label>
                                     </div>
                                     <div>
-                                        <input type="checkbox" name="" id="" />
+                                        <input type="checkbox" onClick={()=>setLimit(50,100)} name="" id="" />
                                         <label>0-50</label>
                                     </div>
                                     <div>

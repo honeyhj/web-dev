@@ -9,7 +9,7 @@ const Home = ({ cartLength, addToCart, addToWishlist }) => {
     const [term, setTerm] = useState("");
     const setSearchTerm = (searchterm) => {
         setTerm(searchterm)
-        console.log(searchterm,'llllooolll')
+        // console.log(searchterm,'llllooolll')
     }
     return (
         <>
