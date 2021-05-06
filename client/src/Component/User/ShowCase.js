@@ -45,7 +45,7 @@ const ShowCase = (props) => {
                                     </div>
                                     <div>
                                         <input type="radio" name="price" id="" style={{margin:'0 10px'}} />
-                                        <label>Under 15000/-</label>
+                                        <label>10k-15k/-</label>
                                     </div>
                                     <div>
                                         <input type="radio" name="price" id=""  style={{margin:'0 10px'}}/>
