@@ -7,6 +7,10 @@ const ShowCase = (props) => {
     const [box, setBox] = useState(false)
     const [menus, setMenus] = useState([])
 
+    // s=0
+    // e=50
+
+
 
     const priceBox = () => {
 
@@ -40,24 +44,24 @@ const ShowCase = (props) => {
                             box ?
                                 <div className="dropBox">
                                     <div>
-                                        <input type="radio" name="price" id="" style={{margin:'0 10px'}}/>
-                                        <label>Under 5000/-</label>
+                                        <input type="radio" name="price" id="" onChange={() => props.setProductByRange(1, 5000)} style={{ margin: '0 10px' }} />
+                                        <label>0-5k</label>
                                     </div>
                                     <div>
-                                        <input type="radio" name="price" id="" style={{margin:'0 10px'}} />
-                                        <label>10k-15k/-</label>
+                                        <input type="radio" name="price" onChange={() => props.setProductByRange(5001, 10000)} id="" style={{ margin: '0 10px' }} />
+                                        <label>5k-10k</label>
                                     </div>
                                     <div>
-                                        <input type="radio" name="price" id=""  style={{margin:'0 10px'}}/>
-                                        <label>Under 20000/-</label>
+                                        <input type="radio" name="price" id="" onChange={() => props.setProductByRange(10001, 15000)} style={{ margin: '0 10px' }} />
+                                        <label>15k-20k</label>
                                     </div>
                                     <div>
-                                        <input type="radio" name="price" id="" style={{margin:'0 10px'}} />
-                                        <label>Under 25000/-</label>
+                                        <input type="radio" name="price" id="" onChange={() => props.setProductByRange(15001, 20000)} style={{ margin: '0 10px' }} />
+                                        <label>20k-30k</label>
                                     </div>
                                     <div>
-                                        <input type="radio" name="price" id="" style={{margin:'0 10px'}} />
-                                        <label>Under 30000/-</label>
+                                        <input type="radio" name="price" id="" onChange={() => props.setProductByRange(20001, 30000)} style={{ margin: '0 10px' }} />
+                                        <label>20k-30k</label>
                                     </div>
                                 </div>
                                 : null
