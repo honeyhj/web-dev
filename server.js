@@ -31,9 +31,7 @@ app.use(require("./routes/menu"));
 app.use(require("./routes/cart"));
 app.use(require("./routes/order"));
 app.use(require("./routes/wishlist"));
-
-
-
+app.use(require("./routes/comment"));
 
 
 // var db = mongoose.connection;

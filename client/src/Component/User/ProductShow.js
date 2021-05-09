@@ -132,7 +132,6 @@ const ProductShow = ({ addToCart, addToWishlist, term, lower, higher }) => {
         //        break;
         // }
         if (parseInt(lower) > 0 && parseInt(higher) <= 5000 && productByRange.under5k.length) {
-
             setProducts(productByRange.under5k)
         }
         else if (parseInt(lower) > 5000 && parseInt(higher) <= 10000 && productByRange.under10k.length) {
