@@ -3,7 +3,7 @@ import './user.css'
 const TopHeading = () => {
     return (
         <div id="topHeading">
-            <h2>Lorem, ipsum dolor sit amet consectetur </h2>
+            <h2>our new web store</h2>
         </div>
     );
 };

@@ -14,7 +14,7 @@ const InvoicePage = () => {
         trigger={() => <button>Print this out!</button>}
         content={() => componentRef.current}
       />
-      <InvoiceLayout ref={componentRef} />
+      <InvoiceLayout ref={componentRef} onClick={handlePrint}/>
       <button onClick={handlePrint}>Print this out!</button>
     </div>
   );

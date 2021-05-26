@@ -1,0 +1,104 @@
+#invoiceLayout{
+  width: 90%;
+  margin: auto;
+  background:#2222;
+  border: 1px solid #333;
+  height: 100vh;
+}
+#invoiceLayout button{
+  width: 200px;
+  margin: auto;
+  display: block;
+  text-transform: capitalize;
+  font-size: 15px;
+  background:none;
+  outline: none;
+  border: none;
+  color: #2EBFDA;
+}
+#invoiceLayout button:hover{
+  text-decoration: underline;
+}
+#invoiceLayout .invoiceLayout_wrapper{
+  width: 90%;
+  margin: auto;
+  background:#ffff;
+  padding: 10px;
+}
+#invoiceLayout .invoiceLayout_heading{
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+  border-bottom: 2px solid #2EBFDA;
+}
+#invoiceLayout .invoiceLayout_heading .item1{
+  display: flex;
+  justify-content: center;
+}
+#invoiceLayout .invoiceLayout_heading .item1 span{
+  font-size: 30px;
+  text-transform: capitalize;
+}
+#invoiceLayout .invoiceLayout_heading .item2{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-end;
+}
+#invoiceLayout .invoiceLayout_heading .item2 span{
+  font-size: 30px;
+  text-transform: uppercase;
+}
+#invoiceLayout .invoiceLayout_heading .item2 h6{
+  font-size: 12px;
+}
+#invoiceLayout .invoiceLayout_info{
+  display: grid;
+  grid-template-columns: repeat(2,1fr);
+}
+#invoiceLayout .invoiceLayout_info .item1 span{
+  font-size: 30px;
+}
+#invoiceLayout .invoiceLayout_info .item1 h6{
+  font-size: 15px;
+}
+#invoiceLayout .invoiceLayout_info .item1 p{
+  font-size: 15px;
+  color: #2EBFDA;
+}
+#invoiceLayout .invoiceLayout_info .item2{
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+#invoiceLayout .invoiceLayout_info .item2 span{
+  font-size: 22px;
+  color: #2EBFDA;
+  text-transform: uppercase;
+}
+#invoiceLayout .invoiceLayout_info .item2 h6{
+  font-size: 10px;
+  color: #222;
+}
+#invoiceLayout .invoiceLayout_content .head{
+  display: grid;
+  grid-template-columns:1fr 3fr 3fr 3fr 3fr;
+  grid-auto-rows: 40px;
+  line-height: 40px;
+  text-align: center;
+  text-transform: capitalize;
+  background:#2222;
+  margin-top: 3px;
+}
+#invoiceLayout .invoiceLayout_content .body{
+  display: grid;
+  grid-template-columns:1fr 3fr 3fr 3fr 3fr;
+  text-align: center;
+  text-transform: capitalize;
+  background:#2222;
+  margin-top: 3px;
+}
+#invoiceLayout .invoiceLayout_content .body div{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

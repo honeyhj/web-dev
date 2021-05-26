@@ -1,4 +1,5 @@
 import  React ,{useState}from 'react';
+import Footer from './Footer';
 import Header from './Header';
 import ProductDetailsPage from './ProductDetailsPage';
 import ProductShow from './ProductShow';
@@ -23,6 +24,7 @@ const Home = ({ cartLength, addToCart, addToWishlist }) => {
             <TopHeading></TopHeading>
             <ShowCase setSearchTerm={setSearchTerm} setProductByRange={setProductByRange}></ShowCase>
             <ProductShow term={term} lower={l} higher={h} addToCart={addToCart} addToWishlist={addToWishlist}></ProductShow>
+            <Footer></Footer>
         </>
     );
 };

@@ -57,17 +57,21 @@ class Userlogin extends Component {
           display: "flex",
           justifyContent: "center",
           alignItems: "center",
+          flexDirection:"column",
         }}
       >
+        <h2 style={{textTransform:"uppercase",fontSize: '25px'}}>log in</h2>
         <form
           onSubmit={this.formsubmit}
           style={{
-            border: "1px solid black",
-            width: "50%",
-            height: "200px",
+            border: "1px solid #3333",
+            width: "20%",
             display: "flex",
             justifyContent: "center",
             alignItems: "center",
+            flexDirection:"column",
+            padding:"10px",
+            borderRadius:"5px"
           }}
         >
           <input
@@ -76,17 +80,19 @@ class Userlogin extends Component {
             value={this.state.username}
             onChange={this.onchange}
             placeholder="Username"
+            style={{margin:"7px",background:'none',outline:"none",border: "1px solid #3333",padding:"3px",borderRadius:"3px"}}
           />
-          <br></br>
+          
           <input
             type="text"
             name="password"
             value={this.state.password}
             onChange={this.onchange}
             placeholder="password"
+            style={{margin:"7px",background:'none',outline:"none",border: "1px solid #3333",padding:"3px",borderRadius:"3px"}}
           />
           <div className="row justify-content-center">
-            <input type="submit" defaultValue="Log In" />
+            <input type="submit" value="Log In" style={{margin:"7px",background:'#22A6F2',color:"#ffff",outline:"none",border: "1px solid #3333",padding:"3px 20px",borderRadius:"3px"}}/>
           </div>
         </form>
         <ToastContainer

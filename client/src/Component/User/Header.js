@@ -20,14 +20,14 @@ const Header = (props) => {
     getmenus()
   }, [])
   // console.log(props.cartLength);
-  
+
   return (
     <div className="row" style={{ justifyContent: "center" }}>
       <div className="header">
-        <div className="header-wrapper">
+        <div className="header-wrapper" style={{ display: 'grid', gridTemplateColumns: '1fr 2fr 1fr' }}>
           <div className="header-item1">
             <div className="logo">
-              <Link to="/"><span>BuyForest</span></Link>
+              <Link to="/"><span>Anirban-It</span></Link>
             </div>
           </div>
           <div className="header-item2">
@@ -35,7 +35,7 @@ const Header = (props) => {
               menus.map((item, index) => {
                 if (item.Type === "simplemenu") {
                   return (
-                    <li key={index}>{item.CategoryName}</li>
+                    <li key={index} style={{ fontSize: '15px' }}>{item.CategoryName}</li>
                   )
                 }
               })
@@ -44,7 +44,7 @@ const Header = (props) => {
               menus.map((item, index) => {
                 if (item.Type === "dropdownmenuholder") {
                   return (
-                    <li key={index}>{item.CategoryName}</li>
+                    <li key={index} style={{ fontSize: '15px' }}>{item.CategoryName}</li>
                   )
                 }
               })
@@ -53,30 +53,35 @@ const Header = (props) => {
               menus.map((item, index) => {
                 if (item.Type === "megamenuholder") {
                   return (
-
                     <li
                       key={index}
+                      style={{ fontSize: '15px' }}
                       onClick={() => handelOnClick(item.SubCategory)}
                     >{item.CategoryName}</li>
-
-
                   )
                 }
               })
             }
           </div>
-          <div className="header-item3" style={{'display':'flex','justifyContent':'space-around'}}>
-            <Link to="/cartPage"><span className="cart"><sup>{props.cartLength}</sup>cart</span></Link><br />
-            <Link to="/wishlistPage"><span className="cart"><sup>{props.wishlistLength}</sup>wish</span></Link>
+          <div className="header-item3" style={{ display: 'flex', justifyContent: 'space-around', fontSize: '15px' }}>
+            <div>
+              <Link to="/cartPage">
+                <span className="cart">
+                  <sup style={{ fontSize: '15px', textTransform: 'uppercase' }}>{props.cartLength}</sup><i className="fa fa-shopping-cart" style={{ color: 'oranged' }}></i></span>
+              </Link>
+            </div>
+            <div>
+              <Link to="/wishlistPage"><span className="cart"><sup style={{ fontSize: '15px', textTransform: 'uppercase' }}>{props.wishlistLength}</sup><i class="fa fa-heart"></i></span></Link>
+            </div>
             <div className="extra_menus">
-                <li>user
-                  <ul>
-                    <li><Link to="/userregister">register</Link></li>
-                    <li><Link to="/userlogin">login</Link></li>
-                    <li><Link to="">logout</Link></li>
-                    <li><Link to="/admindashboard/uploadproduct">dashboard</Link></li>
-                  </ul>
-                </li>
+              <li style={{ fontSize: '15px', textTransform: 'uppercase' }}><i class="fa fa-user"></i>
+                <ul styles={{border: '1px solid red'}}>
+                  <li><Link to="/userregister">register</Link></li>
+                  <li><Link to="/userlogin">login</Link></li>
+                  <li><Link to="">logout</Link></li>
+                  <li><Link to="/admindashboard/uploadproduct">dashboard</Link></li>
+                </ul>
+              </li>
             </div>
           </div>
         </div>
@@ -84,7 +89,7 @@ const Header = (props) => {
           toggleMenuBar ? <div className="sub-header">
             {
               subMenus.map((item, index) => {
-                return (<li key={index}>{item.Name}</li>)
+                return (<li key={index} style={{ fontSize: '15px', display: 'flex', justifyContent: "space-arround" }}>{item.Name}</li>)
               })
             }
           </div> : null
